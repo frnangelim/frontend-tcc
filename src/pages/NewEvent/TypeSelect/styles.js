@@ -9,7 +9,7 @@ export const TypeBox = styled(Col)`
   margin-left: auto;
   margin-right: auto;
   cursor: pointer;
-  border-radius: 2px;
+  border-radius: 5px;
 
   &:hover {
     background: #409bd6;

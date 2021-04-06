@@ -3,15 +3,17 @@ import { Grid } from "../../components/Feed/Block/style";
 import FeedBlock from "../../components/Feed/Block";
 import MainPhoto from "../../assets/images/bgprincipal.png";
 import { Banner } from "../../styles/General.style";
+import { HomeTitle, HomeTitleContainer } from "./styles";
 
 function Home() {
   return (
     <div>
       <Banner alt="Foto principal" src={MainPhoto} />
 
-      <h1 style={{ textAlign: "center", marginTop: 20 }}>
-        Engajando com instituições
-      </h1>
+      <HomeTitleContainer>
+        <HomeTitle>Engajando com instituições</HomeTitle>
+      </HomeTitleContainer>
+
       <Grid>
         <FeedBlock />
         <FeedBlock />

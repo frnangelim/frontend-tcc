@@ -1,31 +1,51 @@
 import React from "react";
+import { CardBody, Row, Col, Form, FormGroup, Input } from "reactstrap";
+import {
+  CustomCard,
+  CustomLabel,
+  CustomButton,
+  BottomContainer,
+} from "./styles";
+import logo from "../../assets/icons/icongaja.png";
+import { OrangeSpan } from "../../styles/General.style";
 
 function Login() {
   return (
-    <div
-      style={{
-        marginTop: 100,
-        textAlign: "center",
-        background: "#FFF",
-        width: "50%",
-        marginLeft: "auto",
-        marginRight: "auto",
-        paddingTop: 50,
-        paddingBottom: 200,
-      }}
-    >
-      <h1 style={{ textAlign: "center", color: "#409BD6" }}>Entrar</h1>
-      <div>
-        <input style={{ padding: 10 }} placeholder={"E-mail"} />
+    <CustomCard>
+      <div style={{ textAlign: "center" }}>
+        <img src={logo} alt="Logo" style={{ width: 60, height: 60 }} />
       </div>
-      <div style={{ marginTop: 5 }}>
-        <input style={{ padding: 10 }} placeholder={"Senha"} />
-      </div>
-      <br />
-      <div>
-        <button>Entrar</button>
-      </div>
-    </div>
+      <CardBody>
+        <Form>
+          <Row>
+            <Col sm="12">
+              <FormGroup>
+                <CustomLabel for="title">Email:</CustomLabel>
+                <Input type="email" name="email" id="email" />
+              </FormGroup>
+            </Col>
+            <Col sm="12">
+              <FormGroup>
+                <CustomLabel for="title">Senha:</CustomLabel>
+                <Input type="password" name="password" id="password" />
+              </FormGroup>
+            </Col>
+          </Row>
+          <br />
+          <CustomButton color="primary">Entrar</CustomButton>
+
+          <BottomContainer
+            onClick={() => {
+              window.location.href = "/cadastrar";
+            }}
+          >
+            <OrangeSpan>
+              Ainda não possui uma conta? Registre-se aqui
+            </OrangeSpan>
+          </BottomContainer>
+        </Form>
+      </CardBody>
+    </CustomCard>
   );
 }
 

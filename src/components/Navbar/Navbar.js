@@ -28,8 +28,7 @@ const Navbar = (props) => {
           <Brand />
           <NavLinks style={linkAnimation}>
             <a href="/">Home</a>
-            <a href="/login">Entrar</a>
-            <a href="/">Sobre</a>
+            <a href="/entrar">Entrar</a>
           </NavLinks>
           <BurgerWrapper>
             <BurgerMenu
@@ -81,7 +80,7 @@ const NavLinks = styled(animated.ul)`
     cursor: pointer;
 
     &:hover {
-      color: #585995;
+      color: #585995 !important;
       border-bottom: 1px solid #585995;
     }
 
