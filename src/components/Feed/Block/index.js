@@ -1,4 +1,5 @@
 import React from "react";
+import CustomImage from "../../CustomImage";
 import Container, {
   BackgroundImage,
   OverLay,
@@ -10,36 +11,51 @@ import Container, {
   SlugBox,
 } from "./style";
 
-function FeedBlock() {
+function FeedBlock(props) {
   const getBlockSize = () => {
     return "BLOCK";
   };
 
+  const OLD_EVENT = new Date() > new Date(props.item.date);
+  const OLD_COLOR = "#828282";
+
   return (
     <Container $size={getBlockSize()} slugMarginTopShow={-20}>
       <BackgroundImage>
-        <img
-          alt="todo"
-          src={
-            "http://i1.wp.com/www.cavida.org/wp-content/uploads/2018/05/voluntario.jpg?fit=810%2C552"
-          }
-        />
+        <CustomImage alt="todo" src={props.item.image} />
       </BackgroundImage>
       <OverLay />
-      <OverLayClickable href={`/evento/slug`} />
+      <OverLayClickable href={`/evento/${props.item.slug}`} />
       <TopBlock>
-        <span>Categoria</span>
+        <span
+          style={{
+            color: OLD_EVENT ? OLD_COLOR : null,
+          }}
+        >
+          {new Date(props.item.date).toLocaleDateString()}
+        </span>
       </TopBlock>
 
       <BlockDescription>
         <Description>
-          <h3 dangerouslySetInnerHTML={{ __html: "Título do evento" }} />
-          <span>Subtítulo</span>
+          <h3
+            dangerouslySetInnerHTML={{ __html: props.item.title }}
+            style={{
+              color: OLD_EVENT ? OLD_COLOR : null,
+            }}
+          />
+          <span
+            style={{
+              color: OLD_EVENT ? OLD_COLOR : null,
+            }}
+          >
+            {props.item.type === "IN_PERSON" ? "PRESENCIAL" : "REMOTO"}
+          </span>
         </Description>
       </BlockDescription>
 
       <SlugBox>
-        <Slug href={`/evento/slug`} $color={"white"}>
+        <Slug href={`/evento/${props.item.slug}`} $color={"white"}>
           Acessar
         </Slug>
       </SlugBox>

@@ -13,10 +13,10 @@ function TypeSelect(props) {
             <Row>
               <Col sm={12}>Selecione o tipo do evento</Col>
               <div style={{ marginTop: 20, marginBottom: 20, width: "100%" }}>
-                <TypeBox sm={8} onClick={() => props.onNext()}>
+                <TypeBox sm={8} onClick={() => props.onNext("IN_PERSON")}>
                   Presencial
                 </TypeBox>
-                <TypeBox sm={8} onClick={() => props.onNext()}>
+                <TypeBox sm={8} onClick={() => props.onNext("REMOTE")}>
                   Remoto
                 </TypeBox>
               </div>

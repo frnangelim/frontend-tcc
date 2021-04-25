@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import CustomImage from "../../components/CustomImage";
 
 export const Container = styled.div`
   margin-top: 100px;
@@ -39,7 +40,7 @@ export const EventTitle = styled.span`
   text-align: center;
 `;
 
-export const EventImage = styled.img`
+export const EventImage = styled(CustomImage)`
   height: 200px;
   width: 100%;
   object-fit: cover;

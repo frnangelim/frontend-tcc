@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import CustomImage from "../../components/CustomImage";
 
 export const Content = styled.div`
   margin-top: 40px;
@@ -64,15 +65,15 @@ export const AboutContainer = styled.div`
   margin-top: 50px;
 
   display: grid;
-  gap: 20px;
+  gap: 50px;
   grid-template:
-    "image text"
-    "image text";
+    "image text text text"
+    "image text text text";
 
   .image {
     grid-area: image;
-    height: 400px;
-    width: 400px;
+    height: 250x;
+    width: 250px;
   }
 
   .text {
@@ -95,7 +96,7 @@ export const AboutContainer = styled.div`
   }
 `;
 
-export const Banner = styled.img`
+export const Banner = styled(CustomImage)`
   width: 100%;
   height: 60vh;
   object-fit: cover;
@@ -110,4 +111,13 @@ export const Share = styled.a`
   padding: 12px;
   border-radius: 50px;
   font-weight: bold;
+`;
+
+export const OwnerImage = styled.img`
+  height: 250px;
+  width: 250px;
+  border-radius: 125px;
+  object-fit: cover;
+  border: 1px solid #000;
+  background: #fff;
 `;

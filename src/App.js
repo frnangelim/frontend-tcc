@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Spinner } from "../src/styles/General.style";
+import { ToastProvider } from "react-toast-notifications";
+import { Loading, LoadingContainer } from "../src/styles/General.style";
 import Navbar from "./components/Navbar/Navbar";
+import PrivateRoute from "./routes/PrivateRoute";
+import PublicRoute from "./routes/PublicRoute";
 
 // Páginas
 const Home = React.lazy(() => import("./pages/Home"));
@@ -13,46 +16,83 @@ const NewEvent = React.lazy(() => import("./pages/NewEvent"));
 const EventUpdate = React.lazy(() => import("./pages/EventUpdate"));
 const EventDetails = React.lazy(() => import("./pages/EventDetails"));
 const EventEnrollment = React.lazy(() => import("./pages/EventEnrollment"));
-const CompanyDetails = React.lazy(() => import("./pages/CompanyDetails"));
+const UserPage = React.lazy(() => import("./pages/UserPage"));
 
 function App() {
+  const [userLogged, setUserLogged] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("USER_JWT");
+    if (token) setUserLogged(true);
+  }, []);
+
+  const logout = () => {
+    localStorage.clear("USER_JWT");
+    setUserLogged(false);
+  };
+
+  const loginEvent = () => {
+    setUserLogged(true);
+  };
+
   return (
-    <React.Suspense fallback={<Spinner />}>
-      <Router>
-        <Navbar />
-        <Switch>
-          <Route path="/" exact>
-            <Home />
-          </Route>
-          <Route path="/entrar" exact>
-            <Login />
-          </Route>
-          <Route path="/cadastrar" exact>
-            <Signup />
-          </Route>
-          <Route path="/meu-perfil" exact>
-            <EditUserProfile />
-          </Route>
-          <Route path="/meus-eventos" exact>
-            <UserEvents />
-          </Route>
-          <Route path="/evento/novo" exact>
-            <NewEvent />
-          </Route>
-          <Route path="/evento/:slug" exact>
-            <EventDetails />
-          </Route>
-          <Route path="/evento/:slug/editar" exact>
-            <EventUpdate />
-          </Route>
-          <Route path="/evento/:slug/:slotSlug" exact>
-            <EventEnrollment />
-          </Route>
-          <Route path="/:slug" exact>
-            <CompanyDetails />
-          </Route>
-        </Switch>
-      </Router>
+    <React.Suspense
+      fallback={
+        <LoadingContainer>
+          <Loading color={"#DC3736"} />
+        </LoadingContainer>
+      }
+    >
+      <ToastProvider>
+        <Router>
+          <Navbar userLogged={userLogged} logout={() => logout()} />
+          <Switch>
+            <PublicRoute path="/" exact component={Home} restricted={false} />
+            <PublicRoute
+              path="/entrar"
+              exact
+              component={() => <Login loginEvent={() => loginEvent()} />}
+              restricted={true}
+            />
+            <PublicRoute
+              path="/cadastrar"
+              exact
+              component={Signup}
+              restricted={true}
+            />
+            <PrivateRoute
+              path="/meu-perfil"
+              exact
+              component={EditUserProfile}
+            />
+            <PrivateRoute path="/meus-eventos" exact component={UserEvents} />
+            <PrivateRoute path="/evento/novo" exact component={NewEvent} />
+            <PublicRoute
+              path="/evento/:slug"
+              exact
+              component={EventDetails}
+              restricted={false}
+            />
+            <PrivateRoute
+              path="/evento/:slug/detalhes"
+              exact
+              component={EventUpdate}
+            />
+            <PublicRoute
+              path="/evento/:slug/:slotSlug"
+              exact
+              component={EventEnrollment}
+              restricted={false}
+            />
+            <PublicRoute
+              path="/:slug"
+              exact
+              component={UserPage}
+              restricted={false}
+            />
+          </Switch>
+        </Router>
+      </ToastProvider>
     </React.Suspense>
   );
 }

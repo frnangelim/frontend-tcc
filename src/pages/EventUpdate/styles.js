@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Card, Label, Button } from "reactstrap";
+import { Card, Label, Button, NavLink } from "reactstrap";
 
 export const CustomCard = styled(Card)`
   margin-top: 100px;
@@ -41,4 +41,12 @@ export const BackArrowContainer = styled.div`
   top: 80px;
   left: 20px;
   cursor: pointer;
+`;
+
+export const CustomNavLink = styled(NavLink)`
+  cursor: pointer;
+
+  :hover {
+    color: #dd9847 !important;
+  }
 `;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSpring, animated, config } from "react-spring";
 
@@ -28,7 +28,17 @@ const Navbar = (props) => {
           <Brand />
           <NavLinks style={linkAnimation}>
             <a href="/">Home</a>
-            <a href="/entrar">Entrar</a>
+            {props.userLogged ? (
+              <>
+                <a href="/meus-eventos">Eventos</a>
+                <a href="/meu-perfil">Perfil</a>
+                <a href="/" onClick={() => props.logout()}>
+                  Sair
+                </a>
+              </>
+            ) : (
+              <a href="/entrar">Entrar</a>
+            )}
           </NavLinks>
           <BurgerWrapper>
             <BurgerMenu

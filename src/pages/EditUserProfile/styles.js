@@ -44,6 +44,7 @@ export const BackArrowContainer = styled.div`
 `;
 
 export const CustomNavLink = styled(NavLink)`
+  cursor: pointer;
   :hover {
     color: #dd9847 !important;
   }

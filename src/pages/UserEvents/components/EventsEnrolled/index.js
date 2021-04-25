@@ -1,6 +1,5 @@
 import React from "react";
 import CustomCarousel from "../../../../components/CustomCarousel";
-import MainPhoto from "../../../../assets/images/hands.png";
 
 import {
   CarouselCard,
@@ -17,9 +16,9 @@ function carouselComponent(item) {
   return (
     <>
       <CarouselCard>
-        <EventImage src={MainPhoto} alt={"Foto do evento"} />
+        <EventImage src={item.image} alt={"Foto do evento"} />
         <EventTitleContainer>
-          <EventTitle>Evento de adoção</EventTitle>
+          <EventTitle>{item.title}</EventTitle>
         </EventTitleContainer>
         <BottomContainer>
           <SeeDetails>Ver detalhes</SeeDetails>
@@ -33,10 +32,16 @@ function EventsEnrolled(props) {
   return (
     <div style={{ textAlign: "center" }}>
       <CarouselTitleContainer>
-        <CarouselTitle>Meus engajamentos (5)</CarouselTitle>
+        <CarouselTitle>
+          Meus engajamentos ({props.events.length || 0})
+        </CarouselTitle>
       </CarouselTitleContainer>
       <div style={{ maxWidth: 910, margin: "auto", marginTop: 20 }}>
-        <CustomCarousel items={[{}, {}]} component={carouselComponent} />
+        {props.events.length > 0 ? (
+          <CustomCarousel items={props.events} component={carouselComponent} />
+        ) : (
+          <span>Você ainda não participou de nenhum evento.</span>
+        )}
       </div>
     </div>
   );

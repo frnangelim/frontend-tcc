@@ -80,14 +80,3 @@ export const Input = styled.input`
 export const ButtonContainer = styled.div`
   margin-top: 30px;
 `;
-
-export const Button = styled.button`
-  border-radius: 5px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  width: 40%;
-  background: #828282;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-`;

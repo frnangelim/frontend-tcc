@@ -1,4 +1,7 @@
 import styled, { keyframes } from "styled-components";
+import { Label, Button } from "reactstrap";
+import { Heart } from "react-spinners-css";
+import CustomImage from "../components/CustomImage";
 
 const rotate360 = keyframes`
   from {
@@ -34,7 +37,7 @@ export const BoldSpan = styled.span`
   font-weight: bold;
 `;
 
-export const Banner = styled.img`
+export const Banner = styled(CustomImage)`
   width: 100%;
   height: 60vh;
   object-fit: cover;
@@ -62,6 +65,16 @@ export const EventTitle = styled.h1`
   padding: 20px;
 `;
 
+export const HorizontalLine = styled.div`
+  border-bottom: 2px solid #ccc;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  height: 1px;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
 export const TopHorizontalLine = styled.div`
   border-bottom: 2px solid #ccc;
   margin-bottom: 40px;
@@ -78,4 +91,49 @@ export const BottomHorizontalLine = styled.div`
   width: 60%;
   margin-left: auto;
   margin-right: auto;
+`;
+
+export const CustomLabel = styled(Label)`
+  float: left;
+  font-weight: bold;
+`;
+
+export const CustomButton = styled(Button)`
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+export const ErrorSpan = styled.span`
+  color: red;
+`;
+
+export const LoadingContainer = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+`;
+
+export const Loading = styled(Heart)`
+  left: 50%;
+  top: 50%;
+`;
+
+export const FloatButton = styled.a`
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #409bd6;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 2px 2px 3px #999;
+  line-height: 54px;
+  font-size: 40px;
+  cursor: pointer;
 `;

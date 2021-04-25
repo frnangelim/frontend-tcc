@@ -96,11 +96,18 @@ export const AboutContainer = styled.div`
 
 export const EnrollmentContainer = styled.div`
   background: #fff;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   padding: 40px;
   border: 1px solid #ccc;
+  text-align: center;
+
+  display: grid;
+  gap: 20px;
+  grid-template: "info button";
+  @media (max-width: 700px) {
+    grid-template:
+      "info"
+      "button";
+  }
 `;
 
 export const EnrollmentButton = styled.a`

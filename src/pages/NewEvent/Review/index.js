@@ -1,19 +1,73 @@
-import React from "react";
-import { CardBody, Row, Col, Form, FormGroup, Input } from "reactstrap";
-import { CustomCard, CustomLabel, CustomButton } from "../styles";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { CardBody, Row, Col, Form, FormGroup, Input, Media } from "reactstrap";
+import { useToasts } from "react-toast-notifications";
 import Fade from "react-reveal/Fade";
+import { ErrorSpan } from "../../../styles/General.style";
+import { CustomCard, CustomLabel, CustomButton } from "../styles";
 
-function Review() {
+import * as EventService from "../../../services/EventService";
+
+function Review(props) {
+  const [errorMessage, setErrorMessage] = useState("");
+  const history = useHistory();
+  const { addToast } = useToasts();
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      console.log("AAA", props.event);
+      let response = await EventService.create(props.event);
+      if (response) {
+        addToast("Evento criado com sucesso!", {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        history.push(`/evento/${response.slug}`);
+      }
+    } catch (error) {
+      console.log("e", error);
+      setErrorMessage(
+        error && error.err
+          ? error.err.message
+          : "Ocorreu um erro, tente novamente."
+      );
+    }
+  };
+
   return (
     <Fade bottom>
       <CustomCard>
         <CardBody>
-          <Form>
+          <Form onSubmit={onSubmit}>
             <Row>
+              {props.event.image && (
+                <Col sm="12">
+                  <Media
+                    object
+                    src={
+                      props.event.image &&
+                      URL.createObjectURL(props.event.image)
+                    }
+                    width="100%"
+                    height="200"
+                    alt={"Imagem de capa"}
+                    style={{
+                      objectFit: "contain",
+                    }}
+                  />
+                </Col>
+              )}
               <Col sm="12">
                 <FormGroup>
                   <CustomLabel for="title">Título:</CustomLabel>
-                  <Input type="text" name="title" id="title" disabled />
+                  <Input
+                    type="text"
+                    name="title"
+                    id="title"
+                    value={props.event.title}
+                    disabled
+                  />
                 </FormGroup>
               </Col>
               <Col sm="12">
@@ -24,37 +78,55 @@ function Review() {
                     name="description"
                     id="description"
                     rows={5}
+                    value={props.event.description}
                     disabled
                   />
                 </FormGroup>
               </Col>
-              <Col sm="12">
-                <FormGroup>
-                  <CustomLabel for="title">Endereço:</CustomLabel>
-                  <Input type="text" name="address" id="address" disabled />
-                </FormGroup>
-              </Col>
+              {props.event.type === "IN_PERSION" && (
+                <Col sm="12">
+                  <FormGroup>
+                    <CustomLabel for="title">Endereço:</CustomLabel>
+                    <Input
+                      type="text"
+                      name="address"
+                      id="address"
+                      value={props.event.address}
+                      disabled
+                    />
+                  </FormGroup>
+                </Col>
+              )}
               <Col sm="12">
                 <FormGroup>
                   <CustomLabel for="title">Data:</CustomLabel>
-                  <Input type="date" name="date" id="date" disabled />
-                </FormGroup>
-              </Col>
-              <Col sm="12">
-                <FormGroup>
-                  <CustomLabel for="title">URL da imagem de capa:</CustomLabel>
-                  <Input type="text" name="image" id="image" disabled />
+                  <Input
+                    type="date"
+                    name="date"
+                    id="date"
+                    value={props.event.date}
+                    disabled
+                  />
                 </FormGroup>
               </Col>
             </Row>
+            <br />
+            {errorMessage && (
+              <ErrorSpan>
+                {errorMessage}
+                <br />
+              </ErrorSpan>
+            )}
+            <CustomButton outline color="primary">
+              Pré-visualizar
+            </CustomButton>
+            <br />
+            <br />
+            <CustomButton color="primary" type="submit">
+              Finalizar
+            </CustomButton>
           </Form>
         </CardBody>
-
-        <CustomButton outline color="primary">
-          Pré-visualizar
-        </CustomButton>
-        <br />
-        <CustomButton color="primary">Finalizar</CustomButton>
       </CustomCard>
     </Fade>
   );

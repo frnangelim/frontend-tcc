@@ -1,34 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { CardBody, Row, Col, Form, FormGroup, Input } from "reactstrap";
 import { CustomCard, CustomLabel, CustomButton } from "../styles";
 import Fade from "react-reveal/Fade";
 
 function EventLocation(props) {
+  const [address, setAddress] = useState(props.event.address || "");
+
   return (
     <Fade right>
       <CustomCard>
         <CardBody>
-          <Form>
+          <Form onSubmit={() => props.onNext(address)}>
             <Row>
               <Col sm="12">
                 <FormGroup>
                   <CustomLabel for="title">Endereço*:</CustomLabel>
-                  <Input type="text" name="address" id="address" />
-                </FormGroup>
-              </Col>
-              <Col sm="12">
-                <FormGroup>
-                  <CustomLabel for="title">Data*:</CustomLabel>
-                  <Input type="date" name="date" id="date" />
+                  <Input
+                    type="text"
+                    name="address"
+                    id="address"
+                    onChange={(e) => setAddress(e.target.value)}
+                    value={address}
+                    required
+                  />
                 </FormGroup>
               </Col>
             </Row>
+            <br />
+            <CustomButton outline color="primary" type="submit">
+              Próximo
+            </CustomButton>
           </Form>
         </CardBody>
-
-        <CustomButton outline color="primary" onClick={() => props.onNext()}>
-          Próximo
-        </CustomButton>
       </CustomCard>
     </Fade>
   );

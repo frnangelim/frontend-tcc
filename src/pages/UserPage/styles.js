@@ -112,4 +112,7 @@ export const Logo = styled.img`
   height: 250px;
   width: 250px;
   border-radius: 125px;
+  object-fit: cover;
+  border: 1px solid #000;
+  background: #fff;
 `;
