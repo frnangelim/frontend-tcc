@@ -268,7 +268,8 @@ export const Grid = styled.div`
   margin: 40px auto;
   transition: all 0.5s;
 
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(290px, 290px));
+  justify-content: center;
   width: ${({ maxSize }) => maxSize || "1900px"};
   max-width: ${({ maxSize }) => maxSize || "1900px"};
 

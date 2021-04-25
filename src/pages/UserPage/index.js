@@ -14,6 +14,8 @@ import {
   OrangeSpan,
   LoadingContainer,
   Loading,
+  PreviewContainer,
+  PreviewText,
 } from "../../styles/General.style";
 
 import * as UserService from "../../services/UserService";
@@ -31,6 +33,7 @@ function UserPage(props) {
           user = JSON.parse(response);
         }
       } else {
+        console.log("? ");
         const slug = props.match && props.match.params.slug;
         user = await UserService.getOne(slug);
       }
@@ -57,7 +60,12 @@ function UserPage(props) {
                   alt="Foto principal"
                   src={user.coverImage ? user.coverImage : MainPhoto} // TODO IMG DEFAULT
                 />
-                <Share href={"/evento/slug"}>Compartilhar</Share>
+                <Share
+                  href={`https://api.whatsapp.com/send?text=${window.location.href}`}
+                  target="_blank"
+                >
+                  Compartilhar
+                </Share>
               </div>
             </div>
 
@@ -134,13 +142,17 @@ function UserPage(props) {
               <div className={"events"}>
                 <h2 style={{ textAlign: "center" }}>Próximos eventos</h2>
                 <Grid>
-                  {/* <FeedBlock />
-                  <FeedBlock />
-                  <FeedBlock />
-                  <FeedBlock />
-                  <FeedBlock /> */}
+                  {user.events.map((event, index) => (
+                    <FeedBlock item={event} key={index} />
+                  ))}
                 </Grid>
               </div>
+            )}
+
+            {props.preview && (
+              <PreviewContainer>
+                <PreviewText>PRÉ-VISUALIZAÇÃO</PreviewText>
+              </PreviewContainer>
             )}
           </Content>
         </>

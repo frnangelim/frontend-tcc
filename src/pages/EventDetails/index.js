@@ -64,7 +64,12 @@ function EventDetails(props) {
           <div>
             <div>
               <Banner alt="Foto principal" src={event.image} />
-              <Share href={"/evento/slug"}>Compartilhar</Share>
+              <Share
+                href={`https://api.whatsapp.com/send?text=${window.location.href}`}
+                target="_blank"
+              >
+                Compartilhar
+              </Share>
             </div>
 
             <EventTitleContainer>

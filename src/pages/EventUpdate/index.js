@@ -92,6 +92,7 @@ function UpdateEvent(props) {
 
   const onPreview = () => {
     const previewData = { ...event };
+    previewData.slots = slots;
     if (previewData.image && previewData.image instanceof Blob) {
       var reader = new FileReader();
       reader.readAsDataURL(previewData.image);

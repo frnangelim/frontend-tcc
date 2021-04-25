@@ -13,18 +13,19 @@ function Slots(props) {
   );
 
   const addSlot = () => {
+    const newValue = [...slots, ...[{ name: "Voluntário", slots: 9999 }]];
     setSlots([...slots, ...[{ name: "Voluntário", slots: 9999 }]]);
-    onDataChange();
+    onDataChange(newValue);
   };
 
   const removeSlot = (index) => {
     slots.splice(index, 1);
     setSlots([...slots]);
-    onDataChange();
+    onDataChange(slots);
   };
 
-  const onDataChange = () => {
-    props.onChange(slots);
+  const onDataChange = (data) => {
+    props.onChange(data);
   };
 
   return (
