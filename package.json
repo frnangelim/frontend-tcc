@@ -1,6 +1,6 @@
 {
-  "homepage": "http://frnangelim.github.io/frontend-tcc",
   "name": "gaja-site",
+  "homepage": "https://frnangelim.github.io/frontend-tcc",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
