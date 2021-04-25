@@ -8,6 +8,8 @@ import BasicInformationsForm from "./components/BasicInformationsForm";
 import ImagesForm from "./components/ImagesForm";
 import ExternalLinksForm from "./components/ExternalLinksForm";
 
+import { CustomButton } from "../../styles/General.style";
+
 import { CustomCard, CustomNavLink } from "./styles";
 import {
   LoadingContainer,
@@ -70,6 +72,46 @@ function EditUserProfile() {
     if (activeTab !== tab) setActiveTab(tab);
   };
 
+  const onPreview = (data) => {
+    const previewData = { ...data };
+    if (previewData.profileImage && previewData.profileImage instanceof Blob) {
+      let reader = new FileReader();
+      reader.readAsDataURL(previewData.profileImage);
+      reader.onloadend = function () {
+        let base64data = reader.result;
+        previewData.profileImage = base64data;
+        if (previewData.coverImage && previewData.coverImage instanceof Blob) {
+          reader.readAsDataURL(previewData.coverImage);
+          reader.onloadend = function () {
+            base64data = reader.result;
+            previewData.coverImage = base64data;
+            console.log("AA", previewData);
+            localStorage.setItem("USER_PREVIEW", JSON.stringify(previewData));
+            window.open("/usuario/preview", "_blank").focus();
+          };
+        } else {
+          localStorage.setItem("USER_PREVIEW", JSON.stringify(previewData));
+          window.open("/usuario/preview", "_blank").focus();
+        }
+      };
+    } else if (
+      previewData.coverImage &&
+      previewData.coverImage instanceof Blob
+    ) {
+      let reader = new FileReader();
+      reader.readAsDataURL(previewData.coverImage);
+      reader.onloadend = function () {
+        let base64data = reader.result;
+        previewData.coverImage = base64data;
+        localStorage.setItem("USER_PREVIEW", JSON.stringify(previewData));
+        window.open("/usuario/preview", "_blank").focus();
+      };
+    } else {
+      localStorage.setItem("USER_PREVIEW", JSON.stringify(previewData));
+      window.open("/usuario/preview", "_blank").focus();
+    }
+  };
+
   return (
     <>
       {loading ? (
@@ -118,13 +160,25 @@ function EditUserProfile() {
             </Nav>
             <TabContent activeTab={activeTab}>
               <TabPane tabId={TABS.BASIC}>
-                <BasicInformationsForm user={user} onSubmit={onSubmit} />
+                <BasicInformationsForm
+                  user={user}
+                  onSubmit={onSubmit}
+                  onPreview={(data) => onPreview(data)}
+                />
               </TabPane>
               <TabPane tabId={TABS.IMAGES}>
-                <ImagesForm user={user} onSubmit={onSubmit} />
+                <ImagesForm
+                  user={user}
+                  onSubmit={onSubmit}
+                  onPreview={(data) => onPreview(data)}
+                />
               </TabPane>
               <TabPane tabId={TABS.EXTERNAL}>
-                <ExternalLinksForm user={user} onSubmit={onSubmit} />
+                <ExternalLinksForm
+                  user={user}
+                  onSubmit={onSubmit}
+                  onPreview={(data) => onPreview(data)}
+                />
               </TabPane>
             </TabContent>
           </CardBody>

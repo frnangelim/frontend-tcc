@@ -105,6 +105,16 @@ function ImagesForm(props) {
           </Col>
         </Row>
         <br />
+        <CustomButton
+          outline
+          color="primary"
+          type="button"
+          onClick={() => props.onPreview(user)}
+        >
+          Pré-visualizar
+        </CustomButton>
+        <br />
+        <br />
         <CustomButton color="primary" type="submit">
           Atualizar perfil
         </CustomButton>

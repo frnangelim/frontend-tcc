@@ -66,9 +66,7 @@ export const AboutContainer = styled.div`
 
   display: grid;
   gap: 50px;
-  grid-template:
-    "image text text text"
-    "image text text text";
+  grid-template: "image text text text text text text text text";
 
   .image {
     grid-area: image;

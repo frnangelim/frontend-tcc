@@ -16,7 +16,6 @@ function Review(props) {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log("AAA", props.event);
       let response = await EventService.create(props.event);
       if (response) {
         addToast("Evento criado com sucesso!", {
@@ -32,6 +31,23 @@ function Review(props) {
           ? error.err.message
           : "Ocorreu um erro, tente novamente."
       );
+    }
+  };
+
+  const onPreview = () => {
+    const previewData = { ...props.event };
+    if (previewData.image && previewData.image instanceof Blob) {
+      var reader = new FileReader();
+      reader.readAsDataURL(previewData.image);
+      reader.onloadend = function () {
+        var base64data = reader.result;
+        previewData.image = base64data;
+        localStorage.setItem("EVENT_PREVIEW", JSON.stringify(previewData));
+        window.open("/evento/preview", "_blank").focus();
+      };
+    } else {
+      localStorage.setItem("EVENT_PREVIEW", JSON.stringify(previewData));
+      window.open("/evento/preview", "_blank").focus();
     }
   };
 
@@ -117,7 +133,7 @@ function Review(props) {
                 <br />
               </ErrorSpan>
             )}
-            <CustomButton outline color="primary">
+            <CustomButton outline color="primary" onClick={() => onPreview()}>
               Pré-visualizar
             </CustomButton>
             <br />

@@ -137,3 +137,17 @@ export const FloatButton = styled.a`
   font-size: 40px;
   cursor: pointer;
 `;
+
+export const PreviewContainer = styled.div`
+  background: rgba(255, 0, 0, 0.9);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+`;
+
+export const PreviewText = styled.h4`
+  text-align: center;
+  color: #fff;
+  padding-top: 5px;
+`;

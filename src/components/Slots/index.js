@@ -106,7 +106,7 @@ function Slots(props) {
       })}
       <br />
       <CustomButton outline color="primary" onClick={addSlot}>
-        Adicionar vaga
+        Nova vaga
       </CustomButton>
     </div>
   );

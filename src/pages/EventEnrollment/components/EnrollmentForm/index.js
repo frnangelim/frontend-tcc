@@ -127,7 +127,7 @@ function EnrollmentForm(props) {
 
                 <InputContainer>
                   <Input
-                    type="text"
+                    type="email"
                     name="email"
                     placeholder="Email*"
                     value={form.email}

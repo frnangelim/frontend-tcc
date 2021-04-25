@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useToasts } from "react-toast-notifications";
 import ImageUploader from "react-images-upload";
 import classnames from "classnames";
+import { useHistory } from "react-router-dom";
 import {
   TabContent,
   TabPane,
@@ -31,6 +32,7 @@ function UpdateEvent(props) {
   const [activeTab, setActiveTab] = useState("1");
   const [loading, setLoading] = useState(true);
   const { addToast } = useToasts();
+  const history = useHistory();
 
   useEffect(() => {
     async function fetchData() {
@@ -85,6 +87,23 @@ function UpdateEvent(props) {
       return URL.createObjectURL(event.image);
     } else if (event.image) {
       return event.image;
+    }
+  };
+
+  const onPreview = () => {
+    const previewData = { ...event };
+    if (previewData.image && previewData.image instanceof Blob) {
+      var reader = new FileReader();
+      reader.readAsDataURL(previewData.image);
+      reader.onloadend = function () {
+        var base64data = reader.result;
+        previewData.image = base64data;
+        localStorage.setItem("EVENT_PREVIEW", JSON.stringify(previewData));
+        window.open("/evento/preview", "_blank").focus();
+      };
+    } else {
+      localStorage.setItem("EVENT_PREVIEW", JSON.stringify(previewData));
+      window.open("/evento/preview", "_blank").focus();
     }
   };
 
@@ -243,7 +262,12 @@ function UpdateEvent(props) {
                   </ErrorSpan>
                 )}
                 <br />
-                <CustomButton outline color="primary" type="button">
+                <CustomButton
+                  outline
+                  color="primary"
+                  type="button"
+                  onClick={() => onPreview()}
+                >
                   Pré-visualizar
                 </CustomButton>
                 <br />

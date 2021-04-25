@@ -67,6 +67,16 @@ function App() {
             />
             <PrivateRoute path="/meus-eventos" exact component={UserEvents} />
             <PrivateRoute path="/evento/novo" exact component={NewEvent} />
+            <PrivateRoute
+              path="/evento/preview"
+              exact
+              component={() => <EventDetails preview={true} />}
+            />
+            <PrivateRoute
+              path="/usuario/preview"
+              exact
+              component={() => <UserPage preview={true} />}
+            />
             <PublicRoute
               path="/evento/:slug"
               exact

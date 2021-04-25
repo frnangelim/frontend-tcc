@@ -58,42 +58,6 @@ export const Content = styled.div`
 	
 `;
 
-export const AboutContainer = styled.div`
-  margin-bottom: 20px;
-  margin-top: 50px;
-
-  display: grid;
-  gap: 20px;
-  grid-template:
-    "image text"
-    "image text";
-
-  .image {
-    grid-area: image;
-    height: 400px;
-    width: 400px;
-  }
-
-  .text {
-    grid-area: text;
-  }
-
-  @media (max-width: 700px) {
-    grid-template:
-      "text text"
-      "image image";
-
-    .image {
-      width: 250px;
-      height: 250px;
-      max-width: 250px;
-      max-height: 250px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-  }
-`;
-
 export const EnrollmentContainer = styled.div`
   background: #fff;
   padding: 40px;
@@ -107,6 +71,17 @@ export const EnrollmentContainer = styled.div`
     grid-template:
       "info"
       "button";
+  }
+
+  .button {
+    position: relative;
+    height: 100%;
+
+    a {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 `;
 

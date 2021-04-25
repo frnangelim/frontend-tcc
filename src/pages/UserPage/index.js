@@ -24,10 +24,18 @@ function UserPage(props) {
 
   useEffect(() => {
     async function fetchData() {
-      const slug = props.match && props.match.params.slug;
-      const response = await UserService.getOne(slug);
-      console.log("r", response);
-      setUser(response);
+      let user;
+      if (props.preview) {
+        const response = localStorage.getItem("USER_PREVIEW");
+        if (response) {
+          user = JSON.parse(response);
+        }
+      } else {
+        const slug = props.match && props.match.params.slug;
+        user = await UserService.getOne(slug);
+      }
+
+      setUser(user);
       setLoading(false);
     }
 
@@ -45,7 +53,10 @@ function UserPage(props) {
           <div>
             <div>
               <div>
-                <Banner alt="Foto principal" src={MainPhoto} />
+                <Banner
+                  alt="Foto principal"
+                  src={user.coverImage ? user.coverImage : MainPhoto} // TODO IMG DEFAULT
+                />
                 <Share href={"/evento/slug"}>Compartilhar</Share>
               </div>
             </div>
@@ -53,7 +64,7 @@ function UserPage(props) {
             <LogoContainer>
               <div>
                 <Logo
-                  src={user.profileImage ? user.profileImage : LogoA4}
+                  src={user.profileImage ? user.profileImage : LogoA4} // TODO IMG DEFAULT
                   alt={"Logo"}
                 />
               </div>

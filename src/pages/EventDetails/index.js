@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { FiCalendar, FiMapPin, FiEdit3 } from "react-icons/fi";
 import { Content, AboutContainer, OwnerImage } from "./styles";
-import { Media } from "reactstrap";
 import {
   Banner,
   BoldSpan,
@@ -15,6 +14,8 @@ import {
   LoadingContainer,
   Loading,
   FloatButton,
+  PreviewContainer,
+  PreviewText,
 } from "../../styles/General.style";
 import {
   EnrollmentButton,
@@ -22,7 +23,6 @@ import {
 } from "../EventEnrollment/styles";
 
 import * as EventService from "../../services/EventService";
-import { IconBase } from "react-icons/lib";
 
 function EventDetails(props) {
   const [event, setEvent] = useState({});
@@ -31,13 +31,22 @@ function EventDetails(props) {
 
   useEffect(() => {
     async function fetchData() {
-      const slug = props.match && props.match.params.slug;
-      const response = await EventService.getEvent(slug);
-      if (response) {
-        const event = response.event ? response.event : response;
-        setEvent(event);
+      let response;
+      let event;
+      if (props.preview) {
+        response = localStorage.getItem("EVENT_PREVIEW");
+        if (response) {
+          event = JSON.parse(response);
+        }
+      } else {
+        const slug = props.match && props.match.params.slug;
+        response = await EventService.getEvent(slug);
+        if (response) {
+          event = response.event ? response.event : response;
+        }
       }
 
+      setEvent(event);
       setLoading(false);
     }
 
@@ -122,6 +131,14 @@ function EventDetails(props) {
                   );
                 })}
 
+              {!event.slots ||
+                ((event.slots && event.slots.length) == 0 && (
+                  <div style={{ textAlign: "center" }}>
+                    <br />
+                    <p>Sem vagas no momento</p>
+                  </div>
+                ))}
+
               <BottomHorizontalLine />
             </div>
 
@@ -130,27 +147,37 @@ function EventDetails(props) {
             <AboutContainer className={"about"}>
               <OwnerImage
                 alt={"Logo"}
-                src={event.owner.profileImage}
+                src={event.owner && event.owner.profileImage} // ADD DEFAULT IMAGE
                 className={"image"}
               />
               <div className={"text"}>
                 <h2>Mais informações</h2>
                 <span>
-                  {`${event.owner.bio || ""}`.substring(0, 400) + "..."}
+                  {`${event.owner ? event.owner.bio : ""}`.substring(0, 400) +
+                    "..."}
                 </span>
                 <div style={{ marginTop: 10 }}>
-                  <a href={`/${event.owner.slug}`}>Visitar página</a>
+                  <a href={`/${event.owner && event.owner.slug}`}>
+                    Visitar página
+                  </a>
                 </div>
               </div>
             </AboutContainer>
 
-            {event.ownerId ===
-              parseInt(localStorage.getItem("USER_ID") || "0") && (
-              <FloatButton
-                onClick={() => history.push(`/evento/${event.slug}/detalhes`)}
-              >
-                <FiEdit3 size={20} />
-              </FloatButton>
+            {!props.preview &&
+              event.ownerId ===
+                parseInt(localStorage.getItem("USER_ID") || "0") && (
+                <FloatButton
+                  onClick={() => history.push(`/evento/${event.slug}/detalhes`)}
+                >
+                  <FiEdit3 size={20} />
+                </FloatButton>
+              )}
+
+            {props.preview && (
+              <PreviewContainer>
+                <PreviewText>PRÉ-VISUALIZAÇÃO</PreviewText>
+              </PreviewContainer>
             )}
           </Content>
         </>
