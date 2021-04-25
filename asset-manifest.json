@@ -8,13 +8,13 @@
     "static/js/2.90ef5aae.chunk.js": "https://frnangelim.github.io/frontend-tcc/static/js/2.90ef5aae.chunk.js",
     "static/js/2.90ef5aae.chunk.js.map": "https://frnangelim.github.io/frontend-tcc/static/js/2.90ef5aae.chunk.js.map",
     "main.css": "https://frnangelim.github.io/frontend-tcc/static/css/main.eb7173f7.chunk.css",
-    "main.js": "https://frnangelim.github.io/frontend-tcc/static/js/main.c699bdfe.chunk.js",
-    "main.js.map": "https://frnangelim.github.io/frontend-tcc/static/js/main.c699bdfe.chunk.js.map",
+    "main.js": "https://frnangelim.github.io/frontend-tcc/static/js/main.bcdf5586.chunk.js",
+    "main.js.map": "https://frnangelim.github.io/frontend-tcc/static/js/main.bcdf5586.chunk.js.map",
     "runtime-main.js": "https://frnangelim.github.io/frontend-tcc/static/js/runtime-main.8f7b9f92.js",
     "runtime-main.js.map": "https://frnangelim.github.io/frontend-tcc/static/js/runtime-main.8f7b9f92.js.map",
     "static/css/5.35f72e2a.chunk.css": "https://frnangelim.github.io/frontend-tcc/static/css/5.35f72e2a.chunk.css",
-    "static/js/5.094b7c14.chunk.js": "https://frnangelim.github.io/frontend-tcc/static/js/5.094b7c14.chunk.js",
-    "static/js/5.094b7c14.chunk.js.map": "https://frnangelim.github.io/frontend-tcc/static/js/5.094b7c14.chunk.js.map",
+    "static/js/5.7ddb35c5.chunk.js": "https://frnangelim.github.io/frontend-tcc/static/js/5.7ddb35c5.chunk.js",
+    "static/js/5.7ddb35c5.chunk.js.map": "https://frnangelim.github.io/frontend-tcc/static/js/5.7ddb35c5.chunk.js.map",
     "static/css/6.5a5ba13b.chunk.css": "https://frnangelim.github.io/frontend-tcc/static/css/6.5a5ba13b.chunk.css",
     "static/js/6.ad72200f.chunk.js": "https://frnangelim.github.io/frontend-tcc/static/js/6.ad72200f.chunk.js",
     "static/js/6.ad72200f.chunk.js.map": "https://frnangelim.github.io/frontend-tcc/static/js/6.ad72200f.chunk.js.map",
@@ -46,7 +46,7 @@
     "static/css/6.5a5ba13b.chunk.css.map": "https://frnangelim.github.io/frontend-tcc/static/css/6.5a5ba13b.chunk.css.map",
     "static/css/main.eb7173f7.chunk.css.map": "https://frnangelim.github.io/frontend-tcc/static/css/main.eb7173f7.chunk.css.map",
     "static/js/1.b893d2cd.chunk.js.LICENSE.txt": "https://frnangelim.github.io/frontend-tcc/static/js/1.b893d2cd.chunk.js.LICENSE.txt",
-    "static/js/5.094b7c14.chunk.js.LICENSE.txt": "https://frnangelim.github.io/frontend-tcc/static/js/5.094b7c14.chunk.js.LICENSE.txt",
+    "static/js/5.7ddb35c5.chunk.js.LICENSE.txt": "https://frnangelim.github.io/frontend-tcc/static/js/5.7ddb35c5.chunk.js.LICENSE.txt",
     "static/media/UploadIcon.svg": "https://frnangelim.github.io/frontend-tcc/static/media/UploadIcon.469126df.svg",
     "static/media/a4.841df288.jpeg": "https://frnangelim.github.io/frontend-tcc/static/media/a4.841df288.jpeg",
     "static/media/a4banner.f8fbf300.jpeg": "https://frnangelim.github.io/frontend-tcc/static/media/a4banner.f8fbf300.jpeg",
@@ -57,8 +57,8 @@
   "entrypoints": [
     "static/js/runtime-main.8f7b9f92.js",
     "static/css/5.35f72e2a.chunk.css",
-    "static/js/5.094b7c14.chunk.js",
+    "static/js/5.7ddb35c5.chunk.js",
     "static/css/main.eb7173f7.chunk.css",
-    "static/js/main.c699bdfe.chunk.js"
+    "static/js/main.bcdf5586.chunk.js"
   ]
 }
