@@ -42,7 +42,7 @@ function UpdateEvent(props) {
       setLoading(false);
     }
     fetchData();
-  });
+  }, []);
 
   const onSubmit = async (e) => {
     e.preventDefault();

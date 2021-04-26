@@ -51,7 +51,7 @@ function EventDetails(props) {
     }
 
     fetchData();
-  });
+  }, []);
 
   return (
     <>

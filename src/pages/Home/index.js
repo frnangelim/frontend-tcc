@@ -25,7 +25,7 @@ function Home() {
     }
 
     fetchData();
-  });
+  }, []);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
