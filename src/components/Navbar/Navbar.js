@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useSpring, animated, config } from "react-spring";
+import { useHistory } from "react-router-dom";
 
 import Brand from "./Brand";
 import BurgerMenu from "./BurgerMenu";
@@ -8,6 +9,7 @@ import CollapseMenu from "./CollapseMenu";
 
 const Navbar = (props) => {
   const [open, setOpen] = useState(false);
+  const history = useHistory();
 
   const barAnimation = useSpring({
     from: { transform: "translate3d(0, -10rem, 0)" },
@@ -27,17 +29,40 @@ const Navbar = (props) => {
         <FlexContainer>
           <Brand />
           <NavLinks style={linkAnimation}>
-            <a href="/">Home</a>
+            <a href="javascript:void(0);" onClick={() => history.push("/")}>
+              Home
+            </a>
             {props.userLogged ? (
               <>
-                <a href="/meus-eventos">Eventos</a>
-                <a href="/meu-perfil">Perfil</a>
-                <a href="/" onClick={() => props.logout()}>
+                <a
+                  href="javascript:void(0);"
+                  onClick={() => history.push("/meus-eventos")}
+                >
+                  Eventos
+                </a>
+                <a
+                  href="javascript:void(0);"
+                  onClick={() => history.push("/meu-perfil")}
+                >
+                  Perfil
+                </a>
+                <a
+                  href="javascript:void(0);"
+                  onClick={() => {
+                    history.push("/entrar");
+                    props.logout();
+                  }}
+                >
                   Sair
                 </a>
               </>
             ) : (
-              <a href="/entrar">Entrar</a>
+              <a
+                href="javascript:void(0);"
+                onClick={() => history.push("/entrar")}
+              >
+                Entrar
+              </a>
             )}
           </NavLinks>
           <BurgerWrapper>
@@ -48,7 +73,11 @@ const Navbar = (props) => {
           </BurgerWrapper>
         </FlexContainer>
       </NavBar>
-      <CollapseMenu navbarState={open} handleNavbar={() => setOpen(!open)} />
+      <CollapseMenu
+        {...props}
+        navbarState={open}
+        handleNavbar={() => setOpen(!open)}
+      />
     </>
   );
 };

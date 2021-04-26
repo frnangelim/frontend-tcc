@@ -51,7 +51,7 @@ function EventDetails(props) {
     }
 
     fetchData();
-  }, []);
+  });
 
   return (
     <>
@@ -127,7 +127,10 @@ function EventDetails(props) {
                       </div>
                       <div className={"button"}>
                         <EnrollmentButton
-                          href={`/evento/${event.slug}/${slot.slug}`}
+                          onClick={() =>
+                            history.push(`/evento/${event.slug}/${slot.slug}`)
+                          }
+                          href="javascript:void(0);"
                         >
                           ENGAJAR
                         </EnrollmentButton>
@@ -137,7 +140,7 @@ function EventDetails(props) {
                 })}
 
               {!event.slots ||
-                ((event.slots && event.slots.length) == 0 && (
+                ((event.slots && event.slots.length) === 0 && (
                   <div style={{ textAlign: "center" }}>
                     <br />
                     <p>Sem vagas no momento</p>
@@ -162,7 +165,12 @@ function EventDetails(props) {
                     "..."}
                 </span>
                 <div style={{ marginTop: 10 }}>
-                  <a href={`/${event.owner && event.owner.slug}`}>
+                  <a
+                    onClick={() =>
+                      history.push(`/${event.owner && event.owner.slug}`)
+                    }
+                    href="javascript:void(0);"
+                  >
                     Visitar página
                   </a>
                 </div>

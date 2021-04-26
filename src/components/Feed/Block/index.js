@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import CustomImage from "../../CustomImage";
 import Container, {
   BackgroundImage,
@@ -12,6 +13,8 @@ import Container, {
 } from "./style";
 
 function FeedBlock(props) {
+  const history = useHistory();
+
   const getBlockSize = () => {
     return "BLOCK";
   };
@@ -25,7 +28,10 @@ function FeedBlock(props) {
         <CustomImage alt="todo" src={props.item.image} />
       </BackgroundImage>
       <OverLay />
-      <OverLayClickable href={`/evento/${props.item.slug}`} />
+      <OverLayClickable
+        onClick={() => history.push(`/evento/${props.item.slug}`)}
+        href="javascript:void(0);"
+      />
       <TopBlock>
         <span
           style={{
@@ -55,7 +61,11 @@ function FeedBlock(props) {
       </BlockDescription>
 
       <SlugBox>
-        <Slug href={`/evento/${props.item.slug}`} $color={"white"}>
+        <Slug
+          onClick={() => history.push(`/evento/${props.item.slug}`)}
+          href="javascript:void(0);"
+          $color={"white"}
+        >
           Acessar
         </Slug>
       </SlugBox>

@@ -8,14 +8,8 @@ import BasicInformationsForm from "./components/BasicInformationsForm";
 import ImagesForm from "./components/ImagesForm";
 import ExternalLinksForm from "./components/ExternalLinksForm";
 
-import { CustomButton } from "../../styles/General.style";
-
 import { CustomCard, CustomNavLink } from "./styles";
-import {
-  LoadingContainer,
-  Loading,
-  ErrorSpan,
-} from "../../styles/General.style";
+import { LoadingContainer, Loading } from "../../styles/General.style";
 import logo from "../../assets/icons/icongaja.png";
 
 import * as UserService from "../../services/UserService";

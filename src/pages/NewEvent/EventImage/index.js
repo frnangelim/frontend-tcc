@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { CardBody, Row, Col, Form, FormGroup, Media } from "reactstrap";
 import { CustomCard, CustomLabel, CustomButton } from "./../styles";
-import { ErrorSpan } from "../../../styles/General.style";
 import Fade from "react-reveal/Fade";
 import ImageUploader from "react-images-upload";
 
 function EventImage(props) {
   const [image, setImage] = useState(props.event.image || null);
-  const [errorMessage, setErrorMessage] = useState("");
+  // const [errorMessage, setErrorMessage] = useState("");
 
   const onDrop = async (picture) => {
     if (picture && picture.length > 0) {
@@ -56,12 +55,12 @@ function EventImage(props) {
                     }}
                   />
                 )}
-                {errorMessage && (
+                {/* {errorMessage && (
                   <ErrorSpan>
                     {errorMessage}
                     <br />
                   </ErrorSpan>
-                )}
+                )} */}
               </Col>
             </Row>
             <br />

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Row, Col, Form, FormGroup, Media, Input } from "reactstrap";
+import { Row, Col, Form, FormGroup, Input } from "reactstrap";
 import InputMask from "react-input-mask";
 import { CustomLabel, CustomButton } from "./../../styles";
 

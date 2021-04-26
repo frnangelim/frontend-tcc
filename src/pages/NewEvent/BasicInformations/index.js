@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { CardBody, Row, Col, Form, FormGroup, Input } from "reactstrap";
 import { CustomCard, CustomLabel, CustomButton } from "../styles";
 import Fade from "react-reveal/Fade";

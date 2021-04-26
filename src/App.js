@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { ToastProvider } from "react-toast-notifications";
 import { Loading, LoadingContainer } from "../src/styles/General.style";
 import Navbar from "./components/Navbar/Navbar";
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
+import { history } from "../src/history";
 
 // Páginas
 const Home = React.lazy(() => import("./pages/Home"));
@@ -44,7 +45,7 @@ function App() {
       }
     >
       <ToastProvider>
-        <Router>
+        <Router basename={"/frontend-tcc"} history={history}>
           <Navbar userLogged={userLogged} logout={() => logout()} />
           <Switch>
             <PublicRoute path="/" exact component={Home} restricted={false} />

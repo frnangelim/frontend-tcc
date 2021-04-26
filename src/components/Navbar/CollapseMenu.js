@@ -1,24 +1,86 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated } from "react-spring";
 
 const CollapseMenu = (props) => {
   const { open } = useSpring({ open: props.navbarState ? 0 : 1 });
+  const history = useHistory();
 
   if (props.navbarState === true) {
     return (
-      <CollapseWrapper style={{
-        transform: open.interpolate({
-          range: [0, 0.2, 0.3, 1],
-          output: [0, -20, 0, -200],
-        }).interpolate(openValue => `translate3d(0, ${openValue}px, 0`)
-      }}
+      <CollapseWrapper
+        style={{
+          transform: open
+            .interpolate({
+              range: [0, 0.2, 0.3, 1],
+              output: [0, -20, 0, -200],
+            })
+            .interpolate((openValue) => `translate3d(0, ${openValue}px, 0`),
+        }}
       >
         <NavLinks>
-          <li><a href="/" onClick={props.handleNavbar}>Home</a></li>
-          <li><a href="/" onClick={props.handleNavbar}>Entrar</a></li>
-          <li><a href="/" onClick={props.handleNavbar}>Sobre</a></li>
+          <li>
+            <a
+              href="javascript:void(0);"
+              onClick={() => {
+                history.push("/");
+                props.handleNavbar();
+              }}
+            >
+              Home
+            </a>
+          </li>
+
+          {props.userLogged ? (
+            <>
+              <li>
+                <a
+                  href="javascript:void(0);"
+                  onClick={() => {
+                    history.push("/meus-eventos");
+                    props.handleNavbar();
+                  }}
+                >
+                  Eventos
+                </a>
+              </li>
+              <li>
+                <a
+                  href="javascript:void(0);"
+                  onClick={() => {
+                    history.push("/meu-perfil");
+                    props.handleNavbar();
+                  }}
+                >
+                  Perfil
+                </a>
+              </li>
+              <li>
+                <a
+                  href="javascript:void(0);"
+                  onClick={() => {
+                    history.push("/entrar");
+                    props.handleNavbar();
+                    props.logout();
+                  }}
+                >
+                  Sair
+                </a>
+              </li>
+            </>
+          ) : (
+            <a
+              href="javascript:void(0);"
+              onClick={() => {
+                history.push("/entrar");
+                props.handleNavbar();
+              }}
+            >
+              Entrar
+            </a>
+          )}
         </NavLinks>
       </CollapseWrapper>
     );
@@ -40,7 +102,7 @@ const CollapseWrapper = styled(animated.div)`
 const NavLinks = styled.ul`
   list-style-type: none;
   padding: 2rem 1rem 2rem 2rem;
-  
+
   & li {
     transition: all 300ms linear 0s;
   }
@@ -59,4 +121,3 @@ const NavLinks = styled.ul`
     }
   }
 `;
-

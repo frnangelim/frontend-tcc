@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useToasts } from "react-toast-notifications";
 import ImageUploader from "react-images-upload";
 import classnames from "classnames";
-import { useHistory } from "react-router-dom";
 import {
   TabContent,
   TabPane,
@@ -32,7 +31,6 @@ function UpdateEvent(props) {
   const [activeTab, setActiveTab] = useState("1");
   const [loading, setLoading] = useState(true);
   const { addToast } = useToasts();
-  const history = useHistory();
 
   useEffect(() => {
     async function fetchData() {
@@ -44,7 +42,7 @@ function UpdateEvent(props) {
       setLoading(false);
     }
     fetchData();
-  }, []);
+  });
 
   const onSubmit = async (e) => {
     e.preventDefault();
