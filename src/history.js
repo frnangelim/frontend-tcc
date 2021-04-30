@@ -1,2 +1,2 @@
 import { createBrowserHistory } from "history";
-export let history = createBrowserHistory({ basename: "/frontend-tcc" });
+export let history = createBrowserHistory({ basename: "" });

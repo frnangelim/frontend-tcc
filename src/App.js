@@ -45,7 +45,7 @@ function App() {
       }
     >
       <ToastProvider>
-        <Router basename={"/frontend-tcc"} history={history}>
+        <Router history={history}>
           <Navbar userLogged={userLogged} logout={() => logout()} />
           <Switch>
             <PublicRoute path="/" exact component={Home} restricted={false} />
