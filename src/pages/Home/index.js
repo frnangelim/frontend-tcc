@@ -19,7 +19,11 @@ function Home() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await EventService.getAll({ page, limit: PAGE_SIZE });
+      const response = await EventService.getAll({
+        page,
+        limit: PAGE_SIZE,
+        hotData: !endOfHotData,
+      });
       setData(response.items);
       setLoading(false);
     }

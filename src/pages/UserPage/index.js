@@ -89,6 +89,12 @@ function UserPage(props) {
                   alt={"Logo"}
                   style={{ objectFit: user.profileImage ? "cover" : "none" }}
                 />
+                <Share
+                  href={`https://api.whatsapp.com/send?text=${window.location.href}`}
+                  target="_blank"
+                >
+                  Compartilhar
+                </Share>
               </div>
             </LogoContainer>
 
