@@ -7,7 +7,12 @@ import {
   CustomButton,
   BottomContainer,
 } from "./styles";
-import { OrangeSpan, ErrorSpan } from "../../styles/General.style";
+import {
+  OrangeSpan,
+  ErrorSpan,
+  LoadingContainer,
+  Loading,
+} from "../../styles/General.style";
 import logo from "../../assets/icons/icongaja.png";
 
 import * as AuthService from "../../services/AuthService";
@@ -18,6 +23,7 @@ function Login(props) {
     password: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
 
   const onChangeInput = (e) => {
@@ -29,6 +35,7 @@ function Login(props) {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       let response = await AuthService.login(user);
       if (response) {
         localStorage.setItem("USER_JWT", response.jwt);
@@ -37,6 +44,7 @@ function Login(props) {
         history.push("/meus-eventos");
       }
     } catch (error) {
+      setLoading(false);
       console.log("ERROR", error);
       setErrorMessage(
         error && error.err
@@ -46,7 +54,11 @@ function Login(props) {
     }
   };
 
-  return (
+  return loading ? (
+    <LoadingContainer>
+      <Loading color={"#409BD6"} />
+    </LoadingContainer>
+  ) : (
     <CustomCard>
       <div style={{ textAlign: "center" }}>
         <img src={logo} alt="Logo" style={{ width: 60, height: 60 }} />

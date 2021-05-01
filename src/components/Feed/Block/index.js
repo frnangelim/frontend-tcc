@@ -32,15 +32,20 @@ function FeedBlock(props) {
         onClick={() => history.push(`/evento/${props.item.slug}`)}
         href="javascript:void(0);"
       />
-      <TopBlock>
+      <TopBlock></TopBlock>
+
+      <div style={{ position: "absolute", top: 20, left: 9, zIndex: 99 }}>
         <span
           style={{
             color: OLD_EVENT ? OLD_COLOR : null,
+            background: OLD_EVENT ? "#3B3B3B" : "#DD9847",
+            padding: 8,
+            borderRadius: 20,
           }}
         >
           {new Date(props.item.date).toLocaleDateString()}
         </span>
-      </TopBlock>
+      </div>
 
       <BlockDescription>
         <Description>

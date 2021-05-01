@@ -40,7 +40,7 @@ function App() {
     <React.Suspense
       fallback={
         <LoadingContainer>
-          <Loading color={"#DC3736"} />
+          <Loading color={"#409BD6"} />
         </LoadingContainer>
       }
     >

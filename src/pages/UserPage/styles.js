@@ -110,10 +110,17 @@ export const LogoContainer = styled.div`
   margin-top: -140px;
 `;
 export const Logo = styled.img`
-  height: 250px;
-  width: 250px;
+  height: 230px;
+  width: 230px;
   border-radius: 125px;
   object-fit: cover;
   border: 1px solid #000;
-  background: #fff;
+  background: #f2f2f2;
+`;
+
+export const DefaultBackground = styled.div`
+  width: 100%;
+  height: 30vh;
+  object-fit: cover;
+  background-color: #80e4c6;
 `;

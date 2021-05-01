@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Row, Col, Form, FormGroup, Input } from "reactstrap";
-import { CustomLabel, CustomButton } from "./../../styles";
+import {
+  CustomLabel,
+  CustomButton,
+  CustomOutlineButton,
+} from "./../../../../styles/General.style";
 
 function BasicInformationsForm(props) {
   const [user, setUser] = useState(props.user || {});
@@ -77,14 +81,14 @@ function BasicInformationsForm(props) {
           </Col>
         </Row>
         <br />
-        <CustomButton
+        <CustomOutlineButton
           outline
           color="primary"
           type="button"
           onClick={() => props.onPreview(user)}
         >
           Pré-visualizar
-        </CustomButton>
+        </CustomOutlineButton>
         <br />
         <br />
         <CustomButton color="primary" type="submit">

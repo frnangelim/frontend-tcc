@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Grid } from "../../components/Feed/Block/style";
 import FeedBlock from "../../components/Feed/Block";
 import { Ellipsis } from "react-spinners-css";
-import MainPhoto from "../../assets/images/default_image2.png";
+import MainPhoto from "../../assets/images/home_banner.png";
 import { Banner, LoadingContainer, Loading } from "../../styles/General.style";
 import { HomeTitle, HomeTitleContainer } from "./styles";
 import * as EventService from "../../services/EventService";
@@ -76,14 +76,14 @@ function Home() {
     <>
       {loading ? (
         <LoadingContainer>
-          <Loading color={"#DC3736"} />
+          <Loading color={"#409BD6"} />
         </LoadingContainer>
       ) : (
         <div>
           <Banner alt="Foto principal" src={MainPhoto} />
 
           <HomeTitleContainer>
-            <HomeTitle>Engajando com instituições</HomeTitle>
+            <HomeTitle>Engajando com eventos</HomeTitle>
           </HomeTitleContainer>
 
           <Grid className="feedblock-list">

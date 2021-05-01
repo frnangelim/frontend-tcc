@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { FiMapPin } from "react-icons/fi";
-import { Content, Grid, Logo, LogoContainer } from "./styles";
-import MainPhoto from "../../assets/images/a4banner.jpeg";
-import LogoA4 from "../../assets/images/a4.jpeg";
+import {
+  Content,
+  Grid,
+  Logo,
+  LogoContainer,
+  DefaultBackground,
+} from "./styles";
+import DefaultUserPicture from "../../assets/icons/gaja_symbol.png";
 import Instagram from "../../assets/icons/btnround.insta.png";
 import Facebook from "../../assets/icons/btnround.facebook.png";
 import Whatsapp from "../../assets/icons/btround.whatsapp.png";
@@ -49,31 +54,40 @@ function UserPage(props) {
     <>
       {loading ? (
         <LoadingContainer>
-          <Loading color={"#DC3736"} />
+          <Loading color={"#409BD6"} />
         </LoadingContainer>
       ) : (
         <>
           <div>
             <div>
               <div>
-                <Banner
-                  alt="Foto principal"
-                  src={user.coverImage ? user.coverImage : MainPhoto} // TODO IMG DEFAULT
-                />
-                <Share
-                  href={`https://api.whatsapp.com/send?text=${window.location.href}`}
-                  target="_blank"
-                >
-                  Compartilhar
-                </Share>
+                {user.coverImage ? (
+                  <>
+                    <Banner
+                      alt="Foto principal"
+                      src={user.coverImage && user.coverImage}
+                    />
+                    <Share
+                      href={`https://api.whatsapp.com/send?text=${window.location.href}`}
+                      target="_blank"
+                    >
+                      Compartilhar
+                    </Share>
+                  </>
+                ) : (
+                  <DefaultBackground />
+                )}
               </div>
             </div>
 
             <LogoContainer>
               <div>
                 <Logo
-                  src={user.profileImage ? user.profileImage : LogoA4} // TODO IMG DEFAULT
+                  src={
+                    user.profileImage ? user.profileImage : DefaultUserPicture
+                  }
                   alt={"Logo"}
+                  style={{ objectFit: user.profileImage ? "cover" : "none" }}
                 />
               </div>
             </LogoContainer>

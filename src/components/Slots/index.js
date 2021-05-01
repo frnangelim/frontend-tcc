@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Row, Col, FormGroup, Input } from "reactstrap";
-import { CustomLabel, CustomButton } from "./../../styles/General.style";
+import { CustomLabel, CustomOutlineButton } from "./../../styles/General.style";
 
 function Slots(props) {
   const [slots, setSlots] = useState(
@@ -52,7 +52,7 @@ function Slots(props) {
                     const value = e.target.value;
                     slots[index].name = value;
                     setSlots([...slots]);
-                    onDataChange();
+                    onDataChange(slots);
                   }}
                 />
               </FormGroup>
@@ -71,7 +71,7 @@ function Slots(props) {
                     const value = e.target.value;
                     slots[index].slots = value;
                     setSlots([...slots]);
-                    onDataChange();
+                    onDataChange(slots);
                   }}
                 />
                 <div style={{ textAlign: "left" }}>
@@ -88,7 +88,7 @@ function Slots(props) {
                         slots[index].slots = 1;
                       }
                       setSlots([...slots]);
-                      onDataChange();
+                      onDataChange(slots);
                     }}
                   />
                   <label style={{ marginLeft: 5 }}> Sem limite de vagas</label>
@@ -106,9 +106,9 @@ function Slots(props) {
         );
       })}
       <br />
-      <CustomButton outline color="primary" onClick={addSlot}>
+      <CustomOutlineButton outline color="primary" onClick={addSlot}>
         Nova vaga
-      </CustomButton>
+      </CustomOutlineButton>
     </div>
   );
 }

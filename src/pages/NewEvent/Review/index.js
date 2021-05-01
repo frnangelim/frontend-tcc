@@ -4,7 +4,12 @@ import { CardBody, Row, Col, Form, FormGroup, Input, Media } from "reactstrap";
 import { useToasts } from "react-toast-notifications";
 import Fade from "react-reveal/Fade";
 import { ErrorSpan } from "../../../styles/General.style";
-import { CustomCard, CustomLabel, CustomButton } from "../styles";
+import { CustomCard } from "../styles";
+import {
+  CustomLabel,
+  CustomButton,
+  CustomOutlineButton,
+} from "../../../styles/General.style";
 
 import * as EventService from "../../../services/EventService";
 
@@ -133,9 +138,13 @@ function Review(props) {
                 <br />
               </ErrorSpan>
             )}
-            <CustomButton outline color="primary" onClick={() => onPreview()}>
+            <CustomOutlineButton
+              outline
+              color="primary"
+              onClick={() => onPreview()}
+            >
               Pré-visualizar
-            </CustomButton>
+            </CustomOutlineButton>
             <br />
             <br />
             <CustomButton color="primary" type="submit">

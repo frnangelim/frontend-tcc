@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { CardBody, Row, Col, Form, FormGroup, Media } from "reactstrap";
-import { CustomCard, CustomLabel, CustomButton } from "./../styles";
+import { CustomCard } from "./../styles";
+import {
+  CustomLabel,
+  CustomOutlineButton,
+} from "../../../styles/General.style";
 import Fade from "react-reveal/Fade";
 import ImageUploader from "react-images-upload";
 
@@ -64,9 +68,13 @@ function EventImage(props) {
               </Col>
             </Row>
             <br />
-            <CustomButton outline color="primary" onClick={() => next(image)}>
+            <CustomOutlineButton
+              outline
+              color="primary"
+              onClick={() => next(image)}
+            >
               Próximo
-            </CustomButton>
+            </CustomOutlineButton>
           </Form>
         </CardBody>
       </CustomCard>

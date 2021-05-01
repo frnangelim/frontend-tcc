@@ -364,7 +364,7 @@ export const Description = styled.div`
 
 export const TopBlock = styled.div`
   position: relative;
-  padding: 10px;
+  padding: 20px;
   z-index: 3;
   background: linear-gradient(
     to bottom,

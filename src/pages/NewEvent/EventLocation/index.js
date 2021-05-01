@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { CardBody, Row, Col, Form, FormGroup, Input } from "reactstrap";
-import { CustomCard, CustomLabel, CustomButton } from "../styles";
+import { CustomCard } from "../styles";
+import {
+  CustomLabel,
+  CustomOutlineButton,
+} from "../../../styles/General.style";
 import Fade from "react-reveal/Fade";
 
 function EventLocation(props) {
@@ -27,9 +31,9 @@ function EventLocation(props) {
               </Col>
             </Row>
             <br />
-            <CustomButton outline color="primary" type="submit">
+            <CustomOutlineButton outline color="primary" type="submit">
               Próximo
-            </CustomButton>
+            </CustomOutlineButton>
           </Form>
         </CardBody>
       </CustomCard>

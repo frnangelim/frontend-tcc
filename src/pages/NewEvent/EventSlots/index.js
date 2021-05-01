@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { CardBody } from "reactstrap";
-import { CustomCard, CustomButton } from "../styles";
+import { CustomCard } from "../styles";
+import { CustomButton } from "../../../styles/General.style";
 import Fade from "react-reveal/Fade";
 import Slots from "../../../components/Slots";
 

@@ -21,7 +21,7 @@ import {
   EnrollmentButton,
   EnrollmentContainer,
 } from "../EventEnrollment/styles";
-
+import DefaultUserPicture from "../../assets/icons/gaja_symbol.png";
 import * as EventService from "../../services/EventService";
 
 function EventDetails(props) {
@@ -57,7 +57,7 @@ function EventDetails(props) {
     <>
       {loading ? (
         <LoadingContainer>
-          <Loading color={"#DC3736"} />
+          <Loading color={"#409BD6"} />
         </LoadingContainer>
       ) : (
         <>
@@ -155,8 +155,16 @@ function EventDetails(props) {
             <AboutContainer className={"about"}>
               <OwnerImage
                 alt={"Logo"}
-                src={event.owner && event.owner.profileImage} // ADD DEFAULT IMAGE
+                src={
+                  event.owner && event.owner.profileImage
+                    ? event.owner.profileImage
+                    : DefaultUserPicture
+                }
                 className={"image"}
+                style={{
+                  objectFit:
+                    event.owner && event.owner.profileImage ? "cover" : "none",
+                }}
               />
               <div className={"text"}>
                 <h2>Mais informações</h2>

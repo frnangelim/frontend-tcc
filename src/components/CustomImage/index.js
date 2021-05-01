@@ -1,4 +1,4 @@
-import DefaultImage from "../../assets/images/default_image.png";
+import DefaultImage from "../../assets/images/default_banner.png";
 
 function CustomImage(props) {
   return (

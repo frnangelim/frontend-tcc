@@ -77,10 +77,12 @@ export const EnrollmentContainer = styled.div`
     position: relative;
     height: 100%;
 
-    a {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+    @media (min-width: 700px) {
+      a {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
     }
   }
 `;

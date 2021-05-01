@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { Label, Button } from "reactstrap";
-import { Heart } from "react-spinners-css";
+import { Ring } from "react-spinners-css";
 import CustomImage from "../components/CustomImage";
 
 const rotate360 = keyframes`
@@ -98,10 +98,28 @@ export const CustomLabel = styled(Label)`
   font-weight: bold;
 `;
 
+export const CustomOutlineButton = styled(Button)`
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+
+  :hover {
+    background: #409bd6;
+  }
+`;
+
 export const CustomButton = styled(Button)`
   width: 300px;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 20px;
+  color: white;
+  background: #409bd6;
+
+  :hover {
+    background: #2473a6;
+  }
 `;
 
 export const ErrorSpan = styled.span`
@@ -117,9 +135,10 @@ export const LoadingContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.3);
 `;
 
-export const Loading = styled(Heart)`
-  left: 50%;
+export const Loading = styled(Ring)`
   top: 50%;
+  display: block;
+  margin: 0 auto;
 `;
 
 export const FloatButton = styled.a`

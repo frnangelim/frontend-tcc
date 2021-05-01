@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { useToasts } from "react-toast-notifications";
 import { CardBody, Row, Col, Form, FormGroup, Input } from "reactstrap";
 import { useHistory } from "react-router-dom";
-import { ErrorSpan } from "../../styles/General.style";
+import {
+  ErrorSpan,
+  LoadingContainer,
+  Loading,
+} from "../../styles/General.style";
 import { CustomCard, CustomLabel, CustomButton } from "./styles";
 import logo from "../../assets/icons/icongaja.png";
 
@@ -15,6 +19,7 @@ function Signup(props) {
     password: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
   const { addToast } = useToasts();
 
@@ -27,6 +32,7 @@ function Signup(props) {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       let response = await UserService.signup(newUser);
       if (response) {
         addToast("Cadastro realizado com sucesso!", {
@@ -36,6 +42,7 @@ function Signup(props) {
         history.push("/entrar");
       }
     } catch (error) {
+      setLoading(false);
       setErrorMessage(
         error && error.err
           ? error.err.message
@@ -44,7 +51,11 @@ function Signup(props) {
     }
   };
 
-  return (
+  return loading ? (
+    <LoadingContainer>
+      <Loading color={"#409BD6"} />
+    </LoadingContainer>
+  ) : (
     <CustomCard>
       <div style={{ textAlign: "center" }}>
         <img src={logo} alt="Logo" style={{ width: 60, height: 60 }} />

@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { CardBody, Row, Col, Form, FormGroup, Input } from "reactstrap";
-import { CustomCard, CustomLabel, CustomButton } from "../styles";
+import { CustomCard } from "../styles";
+import {
+  CustomLabel,
+  CustomOutlineButton,
+} from "../../../styles/General.style";
 import Fade from "react-reveal/Fade";
 
 function BasicInformations(props) {
@@ -69,9 +73,9 @@ function BasicInformations(props) {
               </Col>
             </Row>
             <br />
-            <CustomButton type="submit" outline color="primary">
+            <CustomOutlineButton type="submit" outline color="primary">
               Próximo
-            </CustomButton>
+            </CustomOutlineButton>
           </Form>
         </CardBody>
       </CustomCard>
