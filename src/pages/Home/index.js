@@ -125,7 +125,12 @@ function Home() {
                 onChange={(e) => setSearch(e.target.value)}
               />
               <FiSearch
-                style={{ marginLeft: -40, height: 45, cursor: "pointer" }}
+                style={{
+                  marginLeft: -40,
+                  marginTop: "auto",
+                  marginBottom: "auto",
+                  cursor: "pointer",
+                }}
                 onClick={() => doSearch()}
               />
             </SearchContainer>
