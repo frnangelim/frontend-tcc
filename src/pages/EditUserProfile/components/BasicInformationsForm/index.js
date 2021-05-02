@@ -45,6 +45,7 @@ function BasicInformationsForm(props) {
                 value={user.fullName}
                 onChange={onInputChange}
                 required
+                maxLength={50}
               />
             </FormGroup>
           </Col>
@@ -59,6 +60,7 @@ function BasicInformationsForm(props) {
                 placeholder={"Insira o seu endereço"}
                 value={user.address}
                 onChange={onInputChange}
+                maxLength={50}
               />
             </FormGroup>
           </Col>
@@ -76,6 +78,7 @@ function BasicInformationsForm(props) {
                 rows={5}
                 onChange={onInputChange}
                 required
+                maxLength={1000}
               />
             </FormGroup>
           </Col>

@@ -26,6 +26,7 @@ function EventLocation(props) {
                     onChange={(e) => setAddress(e.target.value)}
                     value={address}
                     required
+                    maxLength={50}
                   />
                 </FormGroup>
               </Col>

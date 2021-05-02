@@ -76,6 +76,7 @@ function Signup(props) {
                   onChange={onChangeInput}
                   placeholder={"Insira como você deseja ser reconhecido"}
                   required
+                  maxLength={50}
                 />
               </FormGroup>
             </Col>

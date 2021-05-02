@@ -33,6 +33,7 @@ function BasicInformations(props) {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     required
+                    maxLength={50}
                   />
                 </FormGroup>
               </Col>
@@ -47,6 +48,7 @@ function BasicInformations(props) {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     required
+                    maxLength={1000}
                   />
                 </FormGroup>
               </Col>

@@ -173,6 +173,7 @@ function UpdateEvent(props) {
                         value={event.title}
                         onChange={onInputChange}
                         required
+                        maxLength={50}
                       />
                     </FormGroup>
                   </Col>
@@ -187,6 +188,7 @@ function UpdateEvent(props) {
                         value={event.description}
                         onChange={onInputChange}
                         required
+                        maxLength={1000}
                       />
                     </FormGroup>
                   </Col>
@@ -199,6 +201,7 @@ function UpdateEvent(props) {
                         id="address"
                         value={event.address}
                         onChange={onInputChange}
+                        maxLength={50}
                       />
                     </FormGroup>
                   </Col>
