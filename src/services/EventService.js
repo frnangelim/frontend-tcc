@@ -37,14 +37,14 @@ export function getSlot(eventSlug, slotSlug) {
   });
 }
 
-export function getAll({ page, limit = 10, hotData = false }) {
+export function getAll({ page, limit = 10, hotData = false, search = "" }) {
   const url = new URL(BASE_URL + `/list`);
 
   let method = "POST";
 
   return request({
     url,
-    body: { page, limit, hotData },
+    body: { page, limit, hotData, search },
     method,
   });
 }

@@ -5,8 +5,16 @@ import { Ellipsis } from "react-spinners-css";
 import MainPhoto from "../../assets/images/home.jpeg";
 import Elements from "../../assets/images/elementos1.png";
 import { Banner, LoadingContainer, Loading } from "../../styles/General.style";
-import { HomeTitle, HomeTitleContainer } from "./styles";
+import {
+  HomeTitle,
+  HomeTitleContainer,
+  SearchContainer,
+  SearchInput,
+  Centered,
+} from "./styles";
 import * as EventService from "../../services/EventService";
+import { Form } from "reactstrap";
+import { FiSearch } from "react-icons/fi";
 
 const PAGE_SIZE = 20;
 
@@ -14,9 +22,10 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const [fetching, setFetching] = useState(false);
   const [page, setPage] = useState(1);
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const [endOfHotData, setEndOfHotData] = useState(false);
   const [endOfAllData, setEndOfAllData] = useState(false);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -24,6 +33,7 @@ function Home() {
         page,
         limit: PAGE_SIZE,
         hotData: !endOfHotData,
+        search: search,
       });
       setData(response.items);
       setLoading(false);
@@ -59,6 +69,20 @@ function Home() {
     }
   };
 
+  const doSearch = async () => {
+    setData([]);
+    setFetching(true);
+    setPage(1);
+    const response = await EventService.getAll({
+      page: 1,
+      limit: PAGE_SIZE,
+      hotData: true,
+      search: search,
+    });
+    setData(response.items);
+    setFetching(false);
+  };
+
   const getMore = async (page) => {
     try {
       setPage(page);
@@ -66,6 +90,7 @@ function Home() {
         page,
         limit: PAGE_SIZE,
         hotData: !endOfHotData,
+        search: search,
       });
       setData([...data, ...response.items]);
       setFetching(false);
@@ -87,6 +112,25 @@ function Home() {
         <div>
           <Banner alt="Foto principal" src={MainPhoto} />
 
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              doSearch();
+            }}
+          >
+            <SearchContainer>
+              <SearchInput
+                value={search}
+                placeholder={"Pesquisar pelo nome do evento ou localização"}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <FiSearch
+                style={{ marginLeft: -40, height: 45, cursor: "pointer" }}
+                onClick={() => doSearch()}
+              />
+            </SearchContainer>
+          </Form>
+
           <HomeTitleContainer>
             <img
               src={Elements}
@@ -107,20 +151,28 @@ function Home() {
             />
           </HomeTitleContainer>
 
-          <Grid className="feedblock-list">
-            {data &&
-              data.map((item, index) => {
-                return (
-                  <div className={"feedblock-element"} key={index}>
-                    <FeedBlock className={"feedblock-element"} item={item} />
-                  </div>
-                );
-              })}
-          </Grid>
+          {data.length > 0 ? (
+            <Grid className="feedblock-list">
+              {data &&
+                data.map((item, index) => {
+                  return (
+                    <div className={"feedblock-element"} key={index}>
+                      <FeedBlock className={"feedblock-element"} item={item} />
+                    </div>
+                  );
+                })}
+            </Grid>
+          ) : (
+            <Centered>
+              <br />
+              <span>Nenhum evento encontrado.</span>
+            </Centered>
+          )}
+
           {fetching ? (
-            <div style={{ textAlign: "center" }}>
+            <Centered>
               <Ellipsis />
-            </div>
+            </Centered>
           ) : undefined}
         </div>
       )}
