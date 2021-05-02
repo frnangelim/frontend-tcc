@@ -31,6 +31,7 @@ export const Spinner = styled.div`
 
 export const OrangeSpan = styled.span`
   color: #dd9847;
+  vertical-align: middle;
 `;
 
 export const BoldSpan = styled.span`

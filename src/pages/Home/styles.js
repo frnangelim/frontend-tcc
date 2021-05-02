@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
-export const HomeTitleContainer = styled.div``;
+export const HomeTitleContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 export const HomeTitle = styled.h3`
   color: #3b3b3b, 100%;

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Grid } from "../../components/Feed/Block/style";
 import FeedBlock from "../../components/Feed/Block";
 import { Ellipsis } from "react-spinners-css";
-import MainPhoto from "../../assets/images/home_banner.png";
+import MainPhoto from "../../assets/images/home.jpeg";
+import Elements from "../../assets/images/elementos1.png";
 import { Banner, LoadingContainer, Loading } from "../../styles/General.style";
 import { HomeTitle, HomeTitleContainer } from "./styles";
 import * as EventService from "../../services/EventService";
@@ -87,7 +88,23 @@ function Home() {
           <Banner alt="Foto principal" src={MainPhoto} />
 
           <HomeTitleContainer>
+            <img
+              src={Elements}
+              style={{
+                width: 50,
+                height: 50,
+                transform: "scale(-1, 1)",
+                marginTop: 5,
+                marginRight: -15,
+              }}
+              alt="Elementos"
+            />
             <HomeTitle>Engajando com eventos</HomeTitle>
+            <img
+              src={Elements}
+              style={{ width: 50, height: 50, marginTop: 5, marginLeft: -20 }}
+              alt="Elementos"
+            />
           </HomeTitleContainer>
 
           <Grid className="feedblock-list">

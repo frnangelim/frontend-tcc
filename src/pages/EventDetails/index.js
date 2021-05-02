@@ -169,8 +169,10 @@ function EventDetails(props) {
               <div className={"text"}>
                 <h2>Mais informações</h2>
                 <span>
-                  {`${event.owner ? event.owner.bio : ""}`.substring(0, 400) +
-                    "..."}
+                  {`${(event.owner && event.owner.bio) || ""}`.substring(
+                    0,
+                    400
+                  ) + "..."}
                 </span>
                 <div style={{ marginTop: 10 }}>
                   <a

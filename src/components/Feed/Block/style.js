@@ -265,7 +265,7 @@ export const Grid = styled.div`
   grid-gap: 20px;
   grid-auto-flow: dense;
   padding: 0px;
-  margin: 40px auto;
+  margin: 0px auto 40px;
   transition: all 0.5s;
 
   grid-template-columns: repeat(auto-fit, minmax(290px, 290px));
