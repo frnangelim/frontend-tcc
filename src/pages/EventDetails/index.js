@@ -65,7 +65,7 @@ function EventDetails(props) {
             <div>
               <Banner alt="Foto principal" src={event.image} />
               <Share
-                href={`https://api.whatsapp.com/send?text=${window.location.href}`}
+                href={`https://api.whatsapp.com/send?text=${window.location.href} %0A Veja este site para eventos sociais. Se junte conosco: crie seu evento ou se inscreva como voluntário!`}
                 target="_blank"
               >
                 Compartilhar
@@ -189,7 +189,7 @@ function EventDetails(props) {
 
             {!props.preview &&
               event.ownerId ===
-                parseInt(localStorage.getItem("USER_ID") || "0") && (
+              parseInt(localStorage.getItem("USER_ID") || "0") && (
                 <FloatButton
                   onClick={() => history.push(`/evento/${event.slug}/detalhes`)}
                 >
